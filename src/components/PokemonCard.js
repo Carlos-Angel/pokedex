@@ -7,16 +7,19 @@ import {
   TouchableWithoutFeedback,
 } from 'react-native';
 import { getColorByPokemonType } from '../utils/getColorByPokemonType';
+import { useNavigation } from '@react-navigation/native';
 import { capitalize } from '../utils/capitalize';
 
 export default function PokemonCard({ pokemon }) {
+  const navigation = useNavigation();
+
   const bgStyles = {
     backgroundColor: getColorByPokemonType(pokemon.type),
     ...styles.bgStyles,
   };
 
   const goToPokemon = () => {
-    console.log('click pokemon');
+    navigation.navigate('Pokemon', { id: pokemon.id });
   };
 
   return (
