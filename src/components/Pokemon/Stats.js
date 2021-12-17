@@ -3,6 +3,11 @@ import { View, Text, StyleSheet } from 'react-native';
 import { capitalize } from '../../utils/capitalize';
 
 export default function Stats({ stats }) {
+  const barStyles = (num) => ({
+    backgroundColor: num > 49 ? '#00ac17' : '#ff3e3e',
+    width: `${num}%`,
+  });
+
   return (
     stats && (
       <View style={styles.content}>
@@ -14,6 +19,9 @@ export default function Stats({ stats }) {
             </View>
             <View style={styles.statInfo}>
               <Text style={styles.statNumber}>{base_stat}</Text>
+              <View style={styles.bgBar}>
+                <View style={[styles.bar, barStyles(base_stat)]} />
+              </View>
             </View>
           </View>
         ))}
@@ -52,5 +60,16 @@ const styles = StyleSheet.create({
   statNumber: {
     width: '12%',
     fontSize: 12,
+  },
+  bgBar: {
+    backgroundColor: '#dedede',
+    width: '88%',
+    height: 5,
+    borderRadius: 20,
+    overflow: 'hidden',
+  },
+  bar: {
+    height: 5,
+    borderRadius: 20,
   },
 });
