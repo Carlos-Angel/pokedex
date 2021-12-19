@@ -5,7 +5,6 @@ export const user = {
 
 export const userDetails = {
   username: 'poke-user',
-  firstName: 'poke-first.name',
-  lastName: 'poke-last-name',
+  name: 'poke-name',
   email: 'pokemon.api.com',
 };
