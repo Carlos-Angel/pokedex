@@ -1,21 +1,24 @@
-import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  Button,
-  Keyboard,
-} from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, TextInput, Button } from 'react-native';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { user, userDetails } from '../../utils/userDB';
 
 export default function LoginForm() {
+  const [error, setError] = useState('');
   const formik = useFormik({
     initialValues: initialValues(),
     validationSchema: Yup.object(validationSchema()),
     validateOnChange: false,
-    onSubmit: (values) => console.log('data:', values),
+    onSubmit: (values) => {
+      const { username, password } = values;
+      setError('');
+      if (username !== user.username || password !== user.password) {
+        setError('invalid credentials');
+      } else {
+        console.log(userDetails);
+      }
+    },
   });
 
   return (
@@ -44,12 +47,13 @@ export default function LoginForm() {
           <Text style={styles.error}>{formik.errors.password}</Text>
         </>
       )}
+      <Text style={styles.error}>{error}</Text>
     </View>
   );
 }
 
 function initialValues() {
-  return { username: '', password: '' };
+  return { username: 'poke-user', password: 'password' };
 }
 
 function validationSchema() {
