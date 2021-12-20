@@ -5,6 +5,7 @@ import { useAuth } from '../hooks/useAuth';
 import { getPokemonDetailsByIdApi } from '../api/pokemon';
 import { getPokemonsFavoriteApi } from '../api/favorite';
 import PokemonsList from '../components/PokemonsList';
+import NoLogged from '../components/NoLogged';
 
 export default function Favorites() {
   const { auth } = useAuth();
@@ -36,12 +37,6 @@ export default function Favorites() {
     }, [auth]),
   );
   return (
-    <View>
-      {!auth ? (
-        <Text>user no logged</Text>
-      ) : (
-        <PokemonsList pokemons={pokemons} />
-      )}
-    </View>
+    <View>{!auth ? <NoLogged /> : <PokemonsList pokemons={pokemons} />}</View>
   );
 }
