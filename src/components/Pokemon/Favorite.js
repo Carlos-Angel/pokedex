@@ -7,6 +7,7 @@ import {
 
 export default function Favorite({ id }) {
   const [isFavorite, setIsFavorite] = useState(false);
+  const [reloadCheck, setReloadCheck] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -17,9 +18,15 @@ export default function Favorite({ id }) {
         console.log(error);
       }
     })();
-  }, [id]);
+  }, [id, reloadCheck]);
 
-  const addFavorite = async () => await addPokemonFavoriteApi(id);
+  const onReloadCheckFavorite = () =>
+    setReloadCheck((reloadCheck) => !reloadCheck);
+
+  const addFavorite = async () => {
+    await addPokemonFavoriteApi(id);
+    onReloadCheckFavorite();
+  };
 
   const removeFavorite = () => console.log('remove favorite');
 
