@@ -3,6 +3,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import {
   addPokemonFavoriteApi,
   isPokemonFavoriteApi,
+  removePokemonFavoriteApi,
 } from '../../api/favorite';
 
 export default function Favorite({ id }) {
@@ -28,7 +29,10 @@ export default function Favorite({ id }) {
     onReloadCheckFavorite();
   };
 
-  const removeFavorite = () => console.log('remove favorite');
+  const removeFavorite = async () => {
+    await removePokemonFavoriteApi(id);
+    onReloadCheckFavorite();
+  };
 
   return (
     <Icon
