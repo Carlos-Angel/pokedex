@@ -47,7 +47,7 @@ function renderPokeball() {
   return (
     <Image
       source={require('../assets/pokeball.png')}
-      style={{ width: 75, height: 75, top: -15 }}
+      style={{ width: 35, height: 35, top: 5 }}
     />
   );
 }
