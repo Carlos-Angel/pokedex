@@ -7,7 +7,9 @@ export default function NoLogged() {
 
   return (
     <View style={styles.content}>
-      <Text style={styles.text}>log in to see your favorites pokemons</Text>
+      <Text style={styles.text}>
+        Registra un usuario para empezar a guardar tus pokemons favoritos
+      </Text>
       <Button title='Login' onPress={() => navigation.navigate('Account')} />
     </View>
   );
